@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create',compact('categories'));
     }
 
     /**
@@ -52,11 +54,14 @@ class PostController extends Controller
 
         $p->save(); */
 
-        Post::create([
+        $post=Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'user_id' => auth()->id()
         ]);
+
+        $categories = $request->input('categories', []);//[1,2,3]
+        $post->categories()->sync($categories);
 
         return redirect(route('posts.index'));
     }
@@ -81,7 +86,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit',compact('post'));
+        $categories = Category::all();
+        return view('posts.edit',compact('post','categories'));
     }
 
     /**
@@ -99,6 +105,10 @@ class PostController extends Controller
         $post->description = $request->description;
 
         $post->save();
+
+        $categories = $request->input('categories', []);
+        $post->categories()->sync($categories);
+
         return redirect(route('posts.index'));
 
 

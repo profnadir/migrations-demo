@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\CommentairesController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CommentairesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PagesController::class,'index']);
 
 Route::resource('/posts',PostController::class);
+
+Route::resource('/categories',CategoriesController::class);
 
 Route::post('/commentaires',[CommentairesController::class,'store'])
 ->name('commentaires.store');

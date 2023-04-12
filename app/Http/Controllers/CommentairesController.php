@@ -55,7 +55,7 @@ class CommentairesController extends Controller
             ])
         ); */
 
-        Post::where('content','like','code%')->get();
+        //Post::where('content','like','code%')->get();
 
         //create
         $post->commentaires()->create(
