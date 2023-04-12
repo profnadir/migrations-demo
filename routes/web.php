@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentairesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PagesController::class,'index']);
+
+Route::resource('/posts',PostController::class);
+
+Route::post('/commentaires',[CommentairesController::class,'store'])
+->name('commentaires.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

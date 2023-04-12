@@ -9,17 +9,21 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Latest News") }}
+                    {{ __("My Posts") }} 
+                    <a href="{{route('posts.create')}}">New</a>
                 </div>
             </div>
-            <div class="mt-5 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        </div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    
                     @foreach ($posts as $post)
                         <div>
                             <div class="title"><a href="{{route('posts.show', $post->id)}}">{{ $post->title }}</a></div>
                             <div class="Description"> {{ $post->description }}</div>
-                            <div class="by">Created by : {{ $post->user->name }} at {{ $post->created_at }} </div>
+                            <div class="operations">
+                                <a href="{{ route('posts.edit',$post->id) }}">Edit</a>
+                            </div>
                         </div>
                         <hr>
                     @endforeach
