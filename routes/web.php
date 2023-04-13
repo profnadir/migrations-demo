@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StagiaireController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CommentairesController;
 
@@ -23,6 +24,9 @@ Route::get('/', [PagesController::class,'index']);
 Route::resource('/posts',PostController::class);
 
 Route::resource('/categories',CategoriesController::class);
+
+Route::resource('/stagiaires',StagiaireController::class);
+
 
 Route::post('/commentaires',[CommentairesController::class,'store'])
 ->name('commentaires.store');
